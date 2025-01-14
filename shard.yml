@@ -1,0 +1,16 @@
+name: engine
+version: 0.1.0
+
+authors:
+  - Leorevoir
+
+crystal: '>= 1.14.1'
+
+dependencies:
+  lib_gl:
+    github: calebuharrison/LibGL
+    branch: master
+  lib_glfw:
+    github: calebuharrison/LibGLFW
+    branch: master
+license: MIT
