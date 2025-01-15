@@ -1,16 +1,82 @@
+####################################################################
 # unsigned int
 alias U16 = UInt16
 alias U32 = UInt32
 alias U64 = UInt64
 alias U128 = UInt128
 
-# vectors
-alias Vector2f = NamedTuple(x: Float64, y: Float64)
-alias Vector3f = NamedTuple(x: Float64, y: Float64, z: Float64)
+####################################################################
+# Vector2f
+# of 2 float64
+struct Vector2f
 
+    getter x : Float64
+    getter y : Float64
+
+    def initialize(@x : Float64, @y : Float64)
+    end
+
+    def length : Float64
+        Math.sqrt(x * x + y * y)
+    end
+
+    def +(other : Vector2f) : Vector2f
+        Vector2f.new(x + other.x, y + other.y)
+    end
+
+    def -(other : Vector2f) : Vector2f
+        Vector2f.new(x - other.x, y - other.y)
+    end
+
+    def *(other : Vector2f) : Vector2f
+        Vector2f.new(x * other.x, y * other.y)
+    end
+
+    def *(scalar : Float64) : Vector2f
+        Vector2f.new(x * scalar, y * scalar)
+    end
+
+end
+
+####################################################################
+# Vector3f
+# of 3 float64
+struct Vector3f
+
+    getter x : Float64
+    getter y : Float64
+    getter z : Float64
+
+    def initialize(@x : Float64, @y : Float64, @z : Float64)
+    end
+
+    def length : Float64
+        Math.sqrt(x * x + y * y + z * z)
+    end
+
+    def +(other : Vec3f) : Vector3f
+        Vec3f.new(x + other.x, y + other.y, z + other.z)
+    end
+
+    def -(other : Vec3f) : Vector3f
+        Vec3f.new(x - other.x, y - other.y, z - other.z)
+    end
+
+    def *(scalar : Float64) : Vector3f
+        Vec3f.new(x * scalar, y * scalar, z * scalar)
+    end
+
+    def *(scalar : Float64) : Vector3f
+        Vector3f.new(x * scalar, y * scalar, z * scalar)
+    end
+
+end
+
+####################################################################
 # events types
 module Event
 
+    ####################################################################
     # key enum
     # inspiration: CrystGLFW enum type on https://github.com/calebuharrison/CrystGLFW
     enum Key
@@ -142,6 +208,7 @@ module Event
         ModSuper      = LibGLFW::MOD_SUPER
     end
 
+    ####################################################################
     # mouse buttons enum
     # inspiration: CrystGLFW enum type on https://github.com/calebuharrison/CrystGLFW
     enum MouseButton
