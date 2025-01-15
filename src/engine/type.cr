@@ -26,14 +26,6 @@ struct Vector2f
         x * other.x + y * other.y
     end
 
-    def cross(other : Vector3f) : Float64
-        x_ = y * other.z - z * other.y
-        y_ = z * other.x - x * other.z
-        z_ = x * other.y - y * x
-
-        Vector3f.new(x_, y_, z_)
-    end
-
     def normalize : Vector2f
         vec_len : Float64 = length
 
@@ -99,6 +91,14 @@ struct Vector3f
         x * other.x + y * other.y + z * other.z
     end
 
+    def cross(other : Vector3f) : Float64
+        x_ = y * other.z - z * other.y
+        y_ = z * other.x - x * other.z
+        z_ = x * other.y - y * x
+
+        Vector3f.new(x_, y_, z_)
+    end
+
     def normalize : Vector3f
         vec_len : Float64 = length
 
@@ -134,6 +134,21 @@ struct Vector3f
 
     def *(n : Float64) : Vector3f
         Vector3f.new(x * n, y * n, z * n)
+    end
+
+end
+
+####################################################################
+# Matrix4f
+struct Matrix4f
+
+    alias Matrix = Array(Array(Float64))
+    alias V2     = Array(Float64)
+
+    @m : Matrix
+
+    def initialize
+        @m = Matrix.new(4) { V2.new(4, 0.0) }
     end
 
 end
