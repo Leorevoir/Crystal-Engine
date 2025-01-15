@@ -34,8 +34,7 @@ module Event
 
         ####################################################################
         # returns the a Vector2f of the current mouse position on the @window
-        # Vector2f is a NamedTuple of two Float64
-        # v.x and v.y
+        # Vector2f is a struct of two Float64 x and y
         def get_mouse_pos : Vector2f
             x = 0f64
             y = 0f64

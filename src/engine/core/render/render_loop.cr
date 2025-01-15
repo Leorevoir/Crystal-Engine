@@ -9,12 +9,17 @@ module RenderLoop
             @frame_time = 1.0f64 / fps
         end
 
+        ####################################################################
         # entry point
+        # starts the engine
         def start(window : Window)
             return if @is_running
             run(window)
         end
 
+        ####################################################################
+        # called by start
+        # core render loop
         # TODO: refactor render loop
         private def run(window : Window)
             @is_running = true
@@ -27,17 +32,20 @@ module RenderLoop
             last_time = Time.monotonic.total_seconds
             unprocessed_time = 0.0f64
 
+            ####################################################################
+            # start loop
             while @is_running
                 should_render = false
 
-                # simply get last_time
+                ####################################################################
+                # time computing
                 start_time = Time.monotonic.total_seconds
                 passed_time = start_time - last_time
                 last_time = start_time
-
                 unprocessed_time += passed_time
                 frame_counter += passed_time
 
+                ####################################################################
                 # game process
                 while unprocessed_time > @frame_time
                     should_render = true
@@ -65,11 +73,13 @@ module RenderLoop
 
                 end
 
+                ####################################################################
                 # only render if necessary
                 if should_render
                     render window
                     frames = frames + 1
                 else
+                    ####################################################################
                     # sleep thread for 1 millisecond
                     sleep(Time::Span.new(nanoseconds: 1000000))
                 end
@@ -87,7 +97,8 @@ module RenderLoop
             window.destroy
         end
 
-        # entry point
+        ####################################################################
+        # entry point to stop the engine
         def stop
             return unless @is_running
             @is_running = false

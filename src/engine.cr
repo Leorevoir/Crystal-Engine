@@ -6,6 +6,7 @@ module Engine
 
     VERSION = "0.1.0"
 
+    ####################################################################
     # entry point
     def run(width : U32 = 1280, height : U32 = 720, title : String = "3D Engine", fps : Float64 = 60f64)
         # init OpenGL
@@ -26,4 +27,6 @@ module Engine
 
 end
 
+####################################################################
+# main call
 Engine.run(fps: 120)

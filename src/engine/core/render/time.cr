@@ -1,6 +1,7 @@
 module RenderLoop
 
-    # Deltatime because Time is already an existing Crystal struct
+    ####################################################################
+    # DeltaTime #TODO
     struct DeltaTime
         @delta : Float64 = 0.0f64
 
