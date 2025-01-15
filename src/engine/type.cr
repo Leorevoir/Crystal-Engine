@@ -26,6 +26,14 @@ struct Vector2f
         x * other.x + y * other.y
     end
 
+    def cross(other : Vector3f) : Float64
+        x_ = y * other.z - z * other.y
+        y_ = z * other.x - x * other.z
+        z_ = x * other.y - y * x
+
+        Vector3f.new(x_, y_, z_)
+    end
+
     def normalize : Vector2f
         vec_len : Float64 = length
 
@@ -34,7 +42,12 @@ struct Vector2f
         return self
     end
 
-    def rotate(angle : Float64)
+    def rotate(angle : Float64) : Vector2f
+        rad : Float64 = Maths.to_radians(angle)
+        cos : Float64 = Math.cos(rad)
+        sin : Float64 = Math.sin(rad)
+
+        Vector2f.new(x * cos - y * sin, x * sin + y * cos)
     end
 
     def +(other : Vector2f) : Vector2f
@@ -93,6 +106,10 @@ struct Vector3f
         @y /= vec_len
         @z /= vec_len
         return self
+    end
+
+    def rotate : Vector3f
+        self
     end
 
     def +(other : Vector3f) : Vector3f
