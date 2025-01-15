@@ -1,4 +1,5 @@
 module Maths
+
     extend self
 
     def to_radians(angle : Float64) : Float64
