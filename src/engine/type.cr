@@ -15,6 +15,10 @@ alias Vector3f = Maths::Vector3f
 alias Matrix4f = Maths::Matrix4f
 
 ####################################################################
+# Quaternion
+alias Quaternion = Maths::Quaternion
+
+####################################################################
 # events types
 module Event
 
