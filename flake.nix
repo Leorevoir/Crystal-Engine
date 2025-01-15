@@ -23,6 +23,7 @@
             glfw
             glew
             mesa
+            pcre
           ];
 
           shellHook = ''
