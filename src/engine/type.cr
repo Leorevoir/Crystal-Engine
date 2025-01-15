@@ -12,6 +12,7 @@ alias Vector3f = NamedTuple(x: Float64, y: Float64, z: Float64)
 module Event
 
     # key enum
+    # inspiration: CrystGLFW enum type on https://github.com/calebuharrison/CrystGLFW
     enum Key
         Unknown       = LibGLFW::KEY_UNKNOWN
         Space         = LibGLFW::KEY_SPACE
@@ -142,6 +143,7 @@ module Event
     end
 
     # mouse buttons enum
+    # inspiration: CrystGLFW enum type on https://github.com/calebuharrison/CrystGLFW
     enum MouseButton
         One     = LibGLFW::MOUSE_BUTTON_1
         Two     = LibGLFW::MOUSE_BUTTON_2
