@@ -12,6 +12,8 @@ struct Vector2f
 
     getter x : Float64
     getter y : Float64
+    protected setter x : Float64
+    protected setter y : Float64
 
     def initialize(@x : Float64, @y : Float64)
     end
@@ -20,20 +22,43 @@ struct Vector2f
         Math.sqrt(x * x + y * y)
     end
 
+    def dot(other : Vector2f) : Float64
+        x * other.x + y * other.y
+    end
+
+    def normalize : Vector2f
+        vec_len : Float64 = length
+
+        @x /= vec_len
+        @y /= vec_len
+        return self
+    end
+
+    def rotate(angle : Float64)
+    end
+
     def +(other : Vector2f) : Vector2f
         Vector2f.new(x + other.x, y + other.y)
+    end
+
+    def +(n : Float64) : Vector2f
+        Vector2f.new(x + n, y + n)
     end
 
     def -(other : Vector2f) : Vector2f
         Vector2f.new(x - other.x, y - other.y)
     end
 
+    def -(n : Float64) : Vector2f
+        Vector2f.new(x - n, y - n)
+    end
+
     def *(other : Vector2f) : Vector2f
         Vector2f.new(x * other.x, y * other.y)
     end
 
-    def *(scalar : Float64) : Vector2f
-        Vector2f.new(x * scalar, y * scalar)
+    def *(n : Float64) : Vector2f
+        Vector2f.new(x * n, y * n)
     end
 
 end
@@ -46,6 +71,9 @@ struct Vector3f
     getter x : Float64
     getter y : Float64
     getter z : Float64
+    protected setter x : Float64
+    protected setter y : Float64
+    protected setter z : Float64
 
     def initialize(@x : Float64, @y : Float64, @z : Float64)
     end
@@ -54,20 +82,41 @@ struct Vector3f
         Math.sqrt(x * x + y * y + z * z)
     end
 
-    def +(other : Vec3f) : Vector3f
-        Vec3f.new(x + other.x, y + other.y, z + other.z)
+    def dot(other : Vector3f) : Float64
+        x * other.x + y * other.y + z * other.z
     end
 
-    def -(other : Vec3f) : Vector3f
-        Vec3f.new(x - other.x, y - other.y, z - other.z)
+    def normalize : Vector3f
+        vec_len : Float64 = length
+
+        @x /= vec_len
+        @y /= vec_len
+        @z /= vec_len
+        return self
     end
 
-    def *(scalar : Float64) : Vector3f
-        Vec3f.new(x * scalar, y * scalar, z * scalar)
+    def +(other : Vector3f) : Vector3f
+        Vector3f.new(x + other.x, y + other.y, z + other.z)
     end
 
-    def *(scalar : Float64) : Vector3f
-        Vector3f.new(x * scalar, y * scalar, z * scalar)
+    def +(n : Float64) : Vector3f
+        Vector3f.new(x + n, y + n, z + n)
+    end
+
+    def -(other : Vector3f) : Vector3f
+        Vector3f.new(x - other.x, y - other.y, z - other.z)
+    end
+
+    def -(n : Float64) : Vector3f
+        Vector3f.new(x - n, y - n, z - n)
+    end
+
+    def *(other : Vector3f) : Vector3f
+        Vector3f.new(x * other.x, y * other.y, z * other.z)
+    end
+
+    def *(n : Float64) : Vector3f
+        Vector3f.new(x * n, y * n, z * n)
     end
 
 end
