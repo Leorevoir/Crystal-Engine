@@ -10,17 +10,34 @@ class Window
 
         @window = LibGLFW.create_window(width, height, title, nil, nil)
         LibGLFW.make_context_current(@window)
+        # disable vsync
         LibGLFW.swap_interval(0)
     end
 
+    ####################################################################
+    # render window
     def render
         LibGLFW.swap_buffers(@window)
     end
 
+    ####################################################################
+    # core event informations that needs a @window instance
     def should_close? : Bool
         LibGLFW.window_should_close(@window) == 1
     end
 
+    def key_pressed?(key : Event::Key) : Bool
+        LibGLFW.get_key(@window, key) == LibGLFW::PRESS
+    end
+
+    def mouse_pressed?(button : Event::MouseButton) : Bool
+        LibGLFW.get_mouse_button(@window, button) == LibGLFW::PRESS
+    end
+
+    #TODO: mouse released & key released methods with glfw
+
+    ####################################################################
+    # free-related methods
     def destroy
         puts "INFO: Window détruite explicitement"
         LibGLFW.destroy_window(@window)

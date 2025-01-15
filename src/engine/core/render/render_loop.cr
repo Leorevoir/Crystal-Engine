@@ -15,8 +15,11 @@ module RenderLoop
             run(window)
         end
 
+        # TODO: refactor render loop
         private def run(window : Window)
             @is_running = true
+
+            input = Event::Input.new window
 
             frames = 0
             frame_counter = 0
@@ -39,14 +42,19 @@ module RenderLoop
                 while unprocessed_time > @frame_time
                     should_render = true
                     unprocessed_time -= @frame_time
+                    LibGLFW.poll_events
 
                     if window.should_close?
                         stop
                     end
 
+                    input.update
+                    stop if window.key_pressed? Event::Key::Escape
+
                     DeltaTime.new(@frame_time, passed_time, start_time)
 
-                    @game.input
+                    # ISSUE: inputs appears more than once
+                    @game.input input
                     @game.update
 
                     if (frame_counter >= 1.0)
