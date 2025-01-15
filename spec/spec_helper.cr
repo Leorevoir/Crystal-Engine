@@ -1,4 +1,4 @@
 require "spec"
 require "../src/engine"
 
-Engine.run(fps: 120)
+# Engine.run(fps: 120)
