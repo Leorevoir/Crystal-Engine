@@ -1,5 +1,7 @@
 require "lib_glfw"
-require "./engine/**"
+require "lib_gl"
+require "./engine/type.cr"
+require "./engine/core/**"
 
 module Engine
     extend self
@@ -10,7 +12,10 @@ module Engine
     # entry point
     def run(width : U32 = 1280, height : U32 = 720, title : String = "3D Engine", fps : Float64 = 60f64)
         # init OpenGL
-        LibGLFW.init
+        if LibGLFW.init == 0
+            puts "ERROR: failed to load LibGLFW"
+            return
+        end
         # WARNING: NOQA
         #create window
         game = Game.new
@@ -27,3 +32,4 @@ module Engine
 
 end
 
+Engine.run(fps: 120)
