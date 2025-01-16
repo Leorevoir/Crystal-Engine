@@ -1,5 +1,25 @@
 module RenderLoop
 
+    class RenderUtil
+
+        def self.clear_screen
+            #TODO: Stencil buffer
+            LibGL.clear_color(0.0, 0.0, 0.0, 0.0)
+            LibGL.clear(LibGL::COLOR_BUFFER_BIT | LibGL::DEPTH_BUFFER_BIT)
+        end
+
+        def self.init_graphics
+            LibGL.front_face(LibGL::CW)
+            LibGL.cull_face(LibGL::BACK)
+            LibGL.enable(LibGL::CULL_FACE)
+            LibGL.enable(LibGL::DEPTH_TEST)
+
+            #TODO:Depth clamp for later
+            LibGL.enable(LibGL::FRAMEBUFFER_SRGB)
+        end
+
+    end
+
     class Render
 
         @is_running : Bool = false
@@ -7,6 +27,7 @@ module RenderLoop
 
         def initialize(@game : Game, fps : Float64)
             @frame_time = 1.0f64 / fps
+            RenderLoop::RenderUtil.init_graphics
         end
 
         ####################################################################
@@ -89,8 +110,9 @@ module RenderLoop
         end
 
         private def render(window : Window)
-            window.render
+            RenderUtil.clear_screen
             @game.render
+            window.render
         end
 
         private def cleanup(window : Window)
