@@ -4,7 +4,7 @@ version: 0.1.0
 authors:
   - Leorevoir
 
-crystal: '>= 1.14.1'
+crystal: '>= 1.15.0'
 
 dependencies:
   lib_gl:
