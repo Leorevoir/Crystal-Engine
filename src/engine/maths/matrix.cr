@@ -4,8 +4,8 @@ module Maths
     # Matrix4f
     struct Matrix4f
 
-        alias Matrix = Array(Array(Float64))
-        alias V2     = Array(Float64)
+        alias Matrix = Array(Array(Float32))
+        alias V2     = Array(Float32)
 
         @m : Matrix
 
@@ -42,7 +42,7 @@ module Maths
             @m = m
         end
 
-        def set(x : Int32, y : Int32, value : Float64)
+        def set(x : Int32, y : Int32, value : Float32)
             @m[x][y] = value
         end
 

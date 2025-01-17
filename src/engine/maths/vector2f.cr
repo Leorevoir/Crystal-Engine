@@ -5,34 +5,34 @@ module Maths
     # of 2 float64
     struct Vector2f
 
-        getter x : Float64
-        getter y : Float64
-        protected setter x : Float64
-        protected setter y : Float64
+        getter x : Float32
+        getter y : Float32
+        protected setter x : Float32
+        protected setter y : Float32
 
-        def initialize(@x : Float64, @y : Float64)
+        def initialize(@x : Float32, @y : Float32)
         end
 
-        def length : Float64
+        def length : Float32
             Math.sqrt(x * x + y * y)
         end
 
-        def dot(other : Vector2f) : Float64
+        def dot(other : Vector2f) : Float32
             x * other.x + y * other.y
         end
 
         def normalize : Vector2f
-            vec_len : Float64 = length
+            vec_len : Float32 = length
 
             @x /= vec_len
             @y /= vec_len
             return self
         end
 
-        def rotate(angle : Float64) : Vector2f
-            rad : Float64 = Maths.to_radians(angle)
-            cos : Float64 = Math.cos(rad)
-            sin : Float64 = Math.sin(rad)
+        def rotate(angle : Float32) : Vector2f
+            rad : Float32 = Maths.to_radians(angle)
+            cos : Float32 = Math.cos(rad)
+            sin : Float32 = Math.sin(rad)
 
             Vector2f.new(x * cos - y * sin, x * sin + y * cos)
         end
@@ -41,7 +41,7 @@ module Maths
             Vector2f.new(x + other.x, y + other.y)
         end
 
-        def +(n : Float64) : Vector2f
+        def +(n : Float32) : Vector2f
             Vector2f.new(x + n, y + n)
         end
 
@@ -49,7 +49,7 @@ module Maths
             Vector2f.new(x - other.x, y - other.y)
         end
 
-        def -(n : Float64) : Vector2f
+        def -(n : Float32) : Vector2f
             Vector2f.new(x - n, y - n)
         end
 
@@ -57,7 +57,7 @@ module Maths
             Vector2f.new(x * other.x, y * other.y)
         end
 
-        def *(n : Float64) : Vector2f
+        def *(n : Float32) : Vector2f
             Vector2f.new(x * n, y * n)
         end
 
