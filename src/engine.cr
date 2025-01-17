@@ -1,6 +1,7 @@
 require "lib_glfw"
 require "lib_gl"
 require "./engine/type.cr"
+require "./engine/utils/**"
 require "./engine/core/**"
 
 module Engine
@@ -10,22 +11,22 @@ module Engine
 
     ####################################################################
     # entry point
-    def run(width : U32 = 1280, height : U32 = 720, title : String = "3D Engine", fps : Float64 = 60f64)
+    def run(width : U32 = 1280, height : U32 = 720, title : String = "3D Engine", fps : Float32 = 60_f32)
         # init OpenGL
         if LibGLFW.init == 0
             puts "ERROR: failed to load LibGLFW"
             return
         end
-        # WARNING: NOQA
+
         #create window
-        game = Game.new
-        render = RenderLoop::Render.new(game, fps)
         window = Window.new(
             width: width,
             height: height,
             title: title
         )
-        render.start window
+        game = Game.new
+        render = RenderLoop::Render.new(game, window, fps)
+        render.start
         # end OpenGL
         LibGLFW.terminate
     end
