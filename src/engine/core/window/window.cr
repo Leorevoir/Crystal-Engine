@@ -26,11 +26,11 @@ class Window
         LibGLFW.window_should_close(@window) == 1
     end
 
-    def key_pressed?(key : Event::Key) : Bool
+    def key_pressed?(key : Int32) : Bool# Event::Key) : Bool
         LibGLFW.get_key(@window, key) == LibGLFW::PRESS
     end
 
-    def mouse_pressed?(button : Event::MouseButton) : Bool
+    def mouse_pressed?(button : Int32) : Bool#Event::MouseButton) : Bool
         LibGLFW.get_mouse_button(@window, button) == LibGLFW::PRESS
     end
 
@@ -39,14 +39,7 @@ class Window
     ####################################################################
     # free-related methods
     def destroy
-        puts "INFO: Window détruite explicitement"
         LibGLFW.destroy_window(@window)
-    end
-
-    # should be called by GC
-    def finalize
-        puts "INFO: Window collectée par le GC"
-        destroy
     end
 
 end
