@@ -16,9 +16,12 @@
             pkg-config
             zsh
             gcc
+            gnumake
+            cmake
             crystal
             libGL
             libGLU
+            freeglut
             glm
             glfw
             glew
@@ -31,6 +34,10 @@
             export PKG_CONFIG_PATH=${pkgs.lib.makeLibraryPath [
               libGL
               libGLU
+              freeglut
+              gcc
+              bash
+              gnumake
               glm
               glfw
               mesa
@@ -40,6 +47,10 @@
             export LD_LIBRARY_PATH=${pkgs.lib.makeLibraryPath [
               libGL
               libGLU
+              freeglut
+              gnumake
+              gcc
+              bash
               glm
               glfw
               mesa
