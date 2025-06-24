@@ -15,11 +15,9 @@
           buildInputs = [
             pkg-config
             gcc
-            gnumake
-            cmake
+            ninja
             crystal
             libGL
-            libGLU
             glfw
             mesa
           ];
@@ -27,23 +25,23 @@
           shellHook = ''
             alias ls="ls --color=auto"
             export PKG_CONFIG_PATH=${pkgs.lib.makeLibraryPath [
-              libGL
-              libGLU
-              gcc
-              gnumake
-              glm
-              glfw
-              mesa
+                pkg-config
+                gcc
+                ninja
+                crystal
+                libGL
+                glfw
+                mesa
             ]}:$PKG_CONFIG_PATH
 
             export LD_LIBRARY_PATH=${pkgs.lib.makeLibraryPath [
-              libGL
-              libGLU
-              gnumake
-              gcc
-              glm
-              glfw
-              mesa
+                pkg-config
+                gcc
+                ninja
+                crystal
+                libGL
+                glfw
+                mesa
             ]}:$LD_LIBRARY_PATH
           '';
         };
