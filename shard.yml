@@ -1,16 +1,11 @@
-name: engine
+name: lumen
 version: 0.1.0
 
 authors:
   - Leorevoir
 
-crystal: '>= 1.15.0'
+crystal: ">= 1.15.0"
 
 dependencies:
-  lib_gl:
-    github: calebuharrison/LibGL
-    branch: master
-  lib_glfw:
-    github: calebuharrison/LibGLFW
-    branch: master
-license: MIT
+
+license: GPL-3.0

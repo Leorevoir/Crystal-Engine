@@ -14,19 +14,14 @@
         devShells.default = mkShell {
           buildInputs = [
             pkg-config
-            zsh
             gcc
             gnumake
             cmake
             crystal
             libGL
             libGLU
-            freeglut
-            glm
             glfw
-            glew
             mesa
-            pcre
           ];
 
           shellHook = ''
@@ -34,27 +29,21 @@
             export PKG_CONFIG_PATH=${pkgs.lib.makeLibraryPath [
               libGL
               libGLU
-              freeglut
               gcc
-              bash
               gnumake
               glm
               glfw
               mesa
-              pcre
             ]}:$PKG_CONFIG_PATH
 
             export LD_LIBRARY_PATH=${pkgs.lib.makeLibraryPath [
               libGL
               libGLU
-              freeglut
               gnumake
               gcc
-              bash
               glm
               glfw
               mesa
-              pcre
             ]}:$LD_LIBRARY_PATH
           '';
         };
